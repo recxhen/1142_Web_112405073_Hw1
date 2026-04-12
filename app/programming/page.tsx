@@ -1,17 +1,24 @@
+"use client"
 import Menu from "@/component/Menu";
 import Image from "next/image"
 import Link from "next/link"
+import React, { useState } from 'react';
+import { IoCodeSharp } from "react-icons/io5";
+import { IoMdArrowRoundBack } from "react-icons/io";
+
+
+
 
 
 export default function Programming() {
   let projectData = {
     "1":{
       "name":"區塊鏈應用",
-      "imageUrl": "/chihiro015.jpg"
+      "imageUrl": "/blockchain.png"
     },
     "2":{
       "name":"遊戲引擎開發",
-      "imageUrl": "/chihiro014.jpg"
+      "imageUrl": "/unreal.png"
     },
   };
 
@@ -20,53 +27,55 @@ export default function Programming() {
       <div className="flex h-full">
         <Link href="/" className="sm:hidden absolute top-2 left-2 bg-white">
           <div>
-            返回icon
+            <IoMdArrowRoundBack />
           </div>          
         </Link>
         <div className="sm:block hidden">
           <Menu/>
         </div>
-        <div className="bg-red-500 w-full">
+        <div className="w-full">
           <div className="bg-white h-full w-full p-3 leading-loose">
-          <div className="text-[32px] font-bold">programming 程式專案</div>
-          <div className="text-[16px] text-gray-600">這裡收錄我的程式學習</div>
+          <div className="flex gap-4 p-4"> 
+  
+            {/* 1. 左側方框：固定寬高 */}
+            <div className="flex items-center justify-center border border-black rounded-lg w-[60px] h-[60px] shrink-0 bg-blue-100">
+              <IoCodeSharp size={20} />
+            </div>
 
-          <div className="grid grid-cols-3 gap-4 m-[26px]">
-            <div className={`bg-amber-50 rounded-2xl h-full flex justify-center items-center 
-              row-span-2 bg-center bg-cover relative overflow-hidden`}
-              style= {{ backgroundImage:`url( ${projectData["1"]["imageUrl"]})`}}
-              >
-                
-                <div className="text-white bg-black/15 w-full h-[80px] flex 
-                                  justify-center items-center backdrop-blur-sm
-                                  absolute bottom-0
-                ">
-                  {projectData["1"]["name"]} 
-                </div>
-
-                <div className="text-red-500 text-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                  中心點
-                </div>
+            {/* 2. 右側文字：高度必須與方框一致 (h-[80px])，並使用 justify-between */}
+            <div className="flex flex-col justify-between h-[60px]"> 
+              <div className="text-[28px] font-bold leading-none">
+                程式專案
               </div>
-            <div className={`bg-amber-50 rounded-2xl h-full flex justify-center items-center 
-            bg-center bg-cover relative overflow-hidden`}
-            style= {{ backgroundImage:`url( ${projectData["2"]["imageUrl"]})`}}
-
-            >
-              
-              <div className="text-white bg-black/15 w-full h-[80px] flex 
-                                justify-center items-center backdrop-blur-sm
-                                absolute bottom-0">
-                                {projectData["2"]["name"]}
+              <div className="text-[20px] text-gray-600 leading-none">
+                這裡收錄我的程式學習
               </div>
             </div>
 
-            <div className="bg-amber-50 rounded-2xl h-40 flex justify-center items-center" >專案2</div>
-            <div className="bg-amber-50 rounded-2xl h-40 flex justify-center items-center" >專案3</div>
-            <div className="bg-amber-50 rounded-2xl h-full flex justify-center items-center row-span-2" >專案4</div>
-            <div className="bg-amber-50 rounded-2xl h-40 flex justify-center items-center" >專案5</div>
-            <div className="bg-amber-50 rounded-2xl h-40 flex justify-center items-center" >專案6</div>
-            <div className="bg-amber-50 rounded-2xl h-40 flex justify-center items-center" >專案7</div>
+          </div>
+
+          <div className="flex flex-col gap-4 m-[26px] h-[900px]">
+            {/* 左邊方塊 (Project 1) */}
+            <div 
+              className="flex-1 bg-amber-50 rounded-2xl flex justify-center items-center bg-center bg-cover relative overflow-hidden"
+              style={{ backgroundImage: `url(${projectData["1"]["imageUrl"]})` }}
+            >
+              <div className="text-white text-2xl text-bold bg-black/15 w-full h-[80px] flex justify-center items-center backdrop-blur-sm absolute bottom-0">
+                {projectData["1"]["name"]}
+              </div>
+            </div>
+
+            {/* 右邊方塊 (Project 2) */}
+            <div 
+              className="flex-1 bg-amber-50 rounded-2xl flex justify-center items-center bg-center bg-cover relative overflow-hidden"
+              style={{ backgroundImage: `url(${projectData["2"]["imageUrl"]})` }}
+            >
+              <div className="text-white text-2xl text-bold bg-black/15 w-full h-[80px] flex justify-center items-center backdrop-blur-sm absolute bottom-0">
+                {projectData["2"]["name"]}
+              </div>
+            </div>
+          
+            
 
           </div>
           </div>      

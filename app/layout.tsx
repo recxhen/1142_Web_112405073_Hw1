@@ -35,11 +35,11 @@ export default function RootLayout({
 
 
 
-        <div className="flex h-full">
+        <div className="flex h-full ">
           {/* 左邊 */}
           
 
-          <div className="bg-gray-50 w-full h-screen ">
+          <div className="bg-white w-full h-screen ">
             {children}
           </div>
         </div>
