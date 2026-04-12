@@ -1,10 +1,28 @@
+
+
+"use client"
 import Image from "next/image"
-import Link from "next/link"
+import Menu from "@/component/Menu"
+import Link from "next/link";
+
 
 export default function About() {
   return (
     <>
-      About 關於我
+      <div className="flex h-full">
+        <Link href="/" className="sm:hidden absolute top-2 left-2 bg-white">
+          <div>
+            返回icon
+          </div>          
+        </Link>
+        <div className="sm:block hidden">
+          <Menu/>
+        </div>
+        <div className="bg-red-500 w-full">
+          About 關於我
+        </div>
+      </div>
+    
     </>
   );
 }
