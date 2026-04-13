@@ -28,20 +28,20 @@ export default function Menu() {
 
         {/* 姓名與標籤 */}
         <div className="text-center text-3xl font-bold mt-4">陳柏硯</div>
-        <div className="flex items-center justify-center bg-blue-300 rounded-2xl px-5 h-[40px] border border-blue-700 font-extrabold text-blue-700 mx-auto mt-3">
+        <div className="flex items-center justify-center bg-blue-300 rounded-2xl px-5 h-[40px] border border-blue-700 font-extrabold text-blue-700 mx-auto mt-5">
           NCCU AD X DCT
         </div>
 
         {/* 社群圖示列 - 這裡要獨立閉合 */}
-        <div className="flex gap-6 justify-center mt-6 text-gray-700">
+        <div className="flex gap-10 justify-center mt-6 text-gray-700">
           <Link href="https://www.instagram.com/finvdbsh01/" target="_blank" className="hover:text-pink-600 transition-colors">
-            <AiFillInstagram size={30}/>
+            <AiFillInstagram size={35}/>
           </Link>              
           <Link href="https://www.facebook.com/chen.bai.yan.630624?locale=zh_TW" target="_blank" className="hover:text-blue-600 transition-colors">
-            <FaFacebook size={30}/>
+            <FaFacebook size={35}/>
           </Link>
           <a href="mailto:112405073@g.nccu.edu.tw" className="hover:text-red-500 transition-colors" title="發送郵件給我">
-            <BiLogoGmail size={30}/>
+            <BiLogoGmail size={35}/>
           </a>
         </div>
 
