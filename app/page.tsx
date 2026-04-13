@@ -1,45 +1,58 @@
 "use client"
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Menu from "@/component/Menu";
 
+// 1. 定義泡泡的型別
+interface Bubble {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+}
+
 export default function Home() {
-  const [bubbles, setBubbles] = useState([]);
+  const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [score, setScore] = useState(0);
 
-  // 產生新泡泡的邏輯
-  const addBubble = () => {
-    const id = Date.now();
-    const size = Math.random() * 60 + 40; // 泡泡大小 40px ~ 100px
-    const x = Math.random() * 80 + 10; // 限制在 10% ~ 90% 的寬度
-    const y = Math.random() * 80 + 10;
-    
-    const newBubble = { id, x, y, size };
-    setBubbles((prev) => [...prev, newBubble]);
-
-    // 3秒後自動消失（如果沒被點擊）
-    setTimeout(() => {
-      setBubbles((prev) => prev.filter((b) => b.id !== id));
-    }, 3000);
-  };
-
-  // 定期產生泡泡
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (bubbles.length < 10) addBubble();
-    }, 800);
-    return () => clearInterval(interval);
-  }, [bubbles]);
-
-  const handlePop = (id) => {
+  // 2. 處理點擊泡泡的邏輯 (使用 useCallback 優化效能)
+  const handlePop = useCallback((id: number) => {
     setScore((s) => s + 1);
     setBubbles((prev) => prev.filter((b) => b.id !== id));
-  };
+  }, []);
+
+  // 3. 定期產生泡泡的 Effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBubbles((prev) => {
+        // 限制畫面上最多同時出現 10 個泡泡
+        if (prev.length < 10) {
+          const id = Date.now();
+          const size = Math.random() * 60 + 40;
+          const x = Math.random() * 80 + 10;
+          const y = Math.random() * 80 + 10;
+          
+          const newBubble: Bubble = { id, x, y, size };
+
+          // 設定 3 秒後自動消失
+          setTimeout(() => {
+            setBubbles((latest) => latest.filter((b) => b.id !== id));
+          }, 3000);
+
+          return [...prev, newBubble];
+        }
+        return prev;
+      });
+    }, 800);
+
+    // 清除計時器，防止記憶體洩漏
+    return () => clearInterval(interval);
+  }, []); // 空陣列確保計時器只會啟動一次
 
   return (
     <div className="flex h-screen w-full bg-white overflow-hidden select-none">
       
-      {/* 左側選單 */}
+      {/* 左側選單：電腦版顯示 */}
       <div className="sm:block hidden h-full shrink-0 z-20">
         <Menu />
       </div>
@@ -60,9 +73,9 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* 遊戲提示 */}
+        {/* 背景裝飾文字 */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <h1 className="text-[10vw] font-black text-white/40 italic">POP IT!</h1>
+          <h1 className="text-[10vw] font-black text-white/40 italic select-none">POP IT!</h1>
         </div>
 
         {/* 泡泡渲染區 */}
@@ -80,22 +93,22 @@ export default function Home() {
                 top: `${bubble.y}%`,
                 width: bubble.size,
                 height: bubble.size,
-                background: "rgba(0, 0, 128, 0.1)",
+                background: "rgba(99, 102, 241, 0.15)",
                 backdropFilter: "blur(4px)",
               }}
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(0, 0, 0, 0)" }}
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(99, 102, 241, 0.25)" }}
             />
           ))}
         </AnimatePresence>
 
-        {/* 底部小字 */}
+        {/* 底部提示 */}
         <div className="absolute bottom-10 left-10 text-indigo-300 font-mono text-xs">
-          [ MINI GAME: POP IT ]
+          [ MINI GAME: POP IT TO DE-STRESS ]
         </div>
       </div>
 
-      {/* 手機版 */}
-      <div className="sm:hidden flex-1 flex justify-center items-center h-full bg-blue-50">
+      {/* 手機版：滿版選單 */}
+      <div className="sm:hidden flex-1 flex justify-center items-center h-full bg-blue-50 p-4">
         <Menu />
       </div>
 
