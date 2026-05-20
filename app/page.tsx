@@ -50,7 +50,7 @@ export default function Home() {
   }, []); // 空陣列確保計時器只會啟動一次
 
   return (
-    <div className="flex h-screen w-full bg-white overflow-hidden select-none">
+    <div className="flex h-screen w-full overflow-hidden select-none">
       
       {/* 左側選單：電腦版顯示 */}
       <div className="sm:block hidden h-full shrink-0 z-20">
