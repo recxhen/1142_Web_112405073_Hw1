@@ -5,41 +5,46 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoCodeSharp } from "react-icons/io5";
 
+// 1. 定義型別 (放在組件外)
+interface ProgramProject {
+  name: string;
+  imageUrl: string;
+  desc: string;
+  link: string;
+}
+
 export default function Programming() {
-  // 將連結 (link) 直接加入資料中
-  const projectData = {
+  // 2. 定義資料 (確保 Record 型別解決之前的 index 錯誤)
+  const projectData: Record<string, ProgramProject> = {
     "1": { 
       name: "區塊鏈應用", 
       imageUrl: "/blockchain.png", 
-      desc: "p5js框架與數位藝術",
-      link: "https://openprocessing.org/@u574646#sketches" // 簡報或作品連結
+      desc: "智能合約開發與 Web3 整合。",
+      link: "https://openprocessing.org/@u574646#sketches" 
     },
     "2": { 
       name: "遊戲引擎開發", 
       imageUrl: "/unreal.png", 
-      desc: "Unreal遊戲製作",
-      link: "https://canva.link/ux41r58cwck1437"
+      desc: "Unreal 遊戲美術與製作",
+      link: "https://canva.link/5kkad1cpoqnfwnj"
     },
     "3": { 
       name: "別踩白塊兒", 
       imageUrl: "/donttouchthewhite.jpeg", 
-      desc: "利用Python製作遊戲",
+      desc: "Python 2D 遊戲開發。",
       link: "https://canva.link/hp82i1dhjwnohlg"
-    },
-    // "4": { 
-    //   name: "行動 App", 
-    //   imageUrl: "/mobile-app.png", 
-    //   desc: "跨平台框架開發實作。",
-    //   link: "https://your-presentation-url.com/app"
-    // },
-  };
+    }
+  }; // <--- 檢查這裡是否只有一個分號，沒有多餘的 }
 
+  // 3. 正確的 return 區塊
   return (
     <div className="flex h-screen overflow-hidden">
+      {/* 左側選單 */}
       <div className="sm:block hidden shrink-0">
         <Menu />
       </div>
 
+      {/* 右側內容：立體化容器 */}
       <main className="flex-1 p-6 md:p-10 flex items-center justify-center">
         {/* 主方塊外殼 */}
         <div className="w-full h-full bg-slate-50 rounded-[2.5rem] 
@@ -62,7 +67,7 @@ export default function Programming() {
                 <Link 
                   key={key}
                   href={projectData[key].link} 
-                  target="_blank"  // 在新分頁打開簡報
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="group relative h-[320px] perspective-1000 block"
                 >
@@ -81,7 +86,6 @@ export default function Programming() {
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
-                      {/* 懸浮時顯示的提示文字 */}
                       <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <span className="text-white font-bold bg-black/40 px-4 py-2 rounded-full backdrop-blur-sm">查看簡報 →</span>
                       </div>
@@ -92,7 +96,6 @@ export default function Programming() {
                       <p className="text-sm text-slate-500 mt-1 line-clamp-1">{projectData[key].desc}</p>
                     </div>
 
-                    {/* 立體邊緣裝飾 */}
                     <div className="absolute inset-0 rounded-3xl border-b-4 border-r-4 border-slate-300/20 pointer-events-none" />
                   </div>
                 </Link>

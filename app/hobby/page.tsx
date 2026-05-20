@@ -6,34 +6,44 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGamepad, FaCat, FaCameraRetro, FaUtensils } from "react-icons/fa";
 import { IoMdArrowRoundBack, IoMdClose } from "react-icons/io";
+import React from "react"; // 確保有導入 React
 
 export default function Hobby() {
-  const [activeAlbum, setActiveAlbum] = useState(null);
+// 在組件內部，修改 useState 這行
+const [activeAlbum, setActiveAlbum] = useState<HobbyItem | null>(null);
+  // 1. 先定義單個興趣項目的介面
+interface HobbyItem {
+  title: string;
+  icon: React.ReactNode; 
+  color: string;
+  description: string;
+  images: string[];
+}
 
-  // 定義分類數據
-  const hobbyData = {
-    cat: {
-      title: "貓貓",
-      icon: <FaCat size={30} />,
-      color: "from-orange-400 to-amber-600",
-      description: "這是我的貓貓夥伴，陪伴我度過寫程式的每一天。",
-      images: ["/cat.png", "/cat2.png", "/cat3.png"]
-    },
-    foto: {
-      title: "Foto",
-      icon: <FaCameraRetro size={30} />,
-      color: "from-blue-400 to-indigo-600",
-      description: "透過鏡頭記錄生活，捕捉那些稍縱即逝的美好瞬間。",
-      images: ["/pic.jpg", "/pic1.jpg", "/pic2.jpg"]
-    },
-    food: {
-      title: "Food",
-      icon: <FaUtensils size={30} />,
-      color: "from-rose-400 to-red-600",
-      description: "熱愛探索巷弄美食，對味道與視覺擺盤有一定的堅持。",
-      images: ["/foodie.png"]
-    }
-  };
+// 2. 使用 Record<string, HobbyItem> 來定義資料物件
+const hobbyData: Record<string, HobbyItem> = {
+  cat: {
+    title: "貓貓",
+    icon: <FaCat size={30} />,
+    color: "from-orange-400 to-amber-600",
+    description: "這是我的貓貓夥伴，陪伴我度過寫程式的每一天。",
+    images: ["/cat.png", "/cat2.png", "/cat3.png"]
+  },
+  foto: {
+    title: "Foto",
+    icon: <FaCameraRetro size={30} />,
+    color: "from-blue-400 to-indigo-600",
+    description: "透過鏡頭記錄生活，捕捉那些稍縱即逝的美好瞬間。",
+    images: ["/pic.jpg", "/pic1.jpg", "/pic2.jpg"]
+  },
+  food: {
+    title: "Food",
+    icon: <FaUtensils size={30} />,
+    color: "from-rose-400 to-red-600",
+    description: "熱愛探索巷弄美食，對味道與視覺擺盤有一定的堅持。",
+    images: ["/foodie.png"]
+  }
+};
 
   return (
     <div className="flex h-screen overflow-hidden">
