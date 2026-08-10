@@ -33,8 +33,20 @@ export default function Programming() {
       imageUrl: "/donttouchthewhite.jpeg", 
       desc: "Python 2D 遊戲開發。",
       link: "https://canva.link/hp82i1dhjwnohlg"
+    },
+    "4": { 
+      name: "叢林考察誌", 
+      imageUrl: "/mindgame.png", 
+      desc: "運用 Next.js / React 開發的小測驗。",
+      link: "https://1142-web-112405073-hw2.vercel.app/"
+    },
+    "5": { 
+      name: "逃出糖果屋", 
+      imageUrl: "/candyhouse.png", 
+      desc: "運用 Next.js / React 開發的遊戲。",
+      link: "https://final-web-design-dusky.vercel.app/"
     }
-  }; // <--- 檢查這裡是否只有一個分號，沒有多餘的 }
+  }; 
 
   // 3. 正確的 return 區塊
   return (
@@ -87,7 +99,7 @@ export default function Programming() {
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="text-white font-bold bg-black/40 px-4 py-2 rounded-full backdrop-blur-sm">查看簡報 →</span>
+                        <span className="text-white font-bold bg-black/40 px-4 py-2 rounded-full backdrop-blur-sm">查看作品 →</span>
                       </div>
                     </div>
 

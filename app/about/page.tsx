@@ -28,6 +28,13 @@ export default function About() {
       desc: "整理出版文件、公文收發、檔案歸檔、文具採購、接待訪客、費用報支及設備維護",
       tags: ["協助主管日常辦公室管理", "迎合主管的的喜好"],
       color: "bg-amber-500"
+    },
+    {
+      title: "凱絡媒體服務股份有限公司",
+      time: "2026 - 2026",
+      desc: "掌握全媒體特性與投放機制，能透過數據分析精準解讀廣告成效並優化素材",
+      tags: ["媒體企劃", "數據分析","廣告優化"],
+      color: "bg-red-500"
     }
   ];
 
@@ -56,7 +63,7 @@ export default function About() {
             
             {/* 標題區 */}
             <div className="flex gap-6 mb-12 items-center">
-              <div className="flex items-center justify-center bg-gradient-to-br from-green-400 to-green-600 
+              <div className="flex items-center justify-center bg-linear-to-br from-green-400 to-green-600 
                             rounded-2xl w-16 h-16 shadow-lg shadow-green-100 text-white shrink-0">
                 <PiAcornBold size={32} />
               </div>
