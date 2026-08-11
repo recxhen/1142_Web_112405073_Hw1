@@ -26,7 +26,7 @@ const hobbyData: Record<string, HobbyItem> = {
     title: "貓貓",
     icon: <FaCat size={30} />,
     color: "from-orange-400 to-amber-600",
-    description: "這是我的貓貓夥伴，陪伴我度過寫程式的每一天。",
+    description: "這是我的貓貓夥伴，陪我度過每一天。",
     images: ["/cat.png", "/cat2.png", "/cat3.png"]
   },
   foto: {
@@ -34,13 +34,13 @@ const hobbyData: Record<string, HobbyItem> = {
     icon: <FaCameraRetro size={30} />,
     color: "from-blue-400 to-indigo-600",
     description: "透過鏡頭記錄生活，捕捉那些稍縱即逝的美好瞬間。",
-    images: ["/pic.jpg", "/pic1.jpg", "/pic2.jpg"]
+    images: ["/pic.jpg", "/pic1.jpg", "/pic2.jpg","/photo1.jpg","/photo2.jpg","/photo3.jpg"]
   },
   food: {
     title: "Food",
     icon: <FaUtensils size={30} />,
     color: "from-rose-400 to-red-600",
-    description: "熱愛探索巷弄美食，對味道與視覺擺盤有一定的堅持。",
+    description: "喜歡探索大台北地區美食，吃比瘦更有福",
     images: ["/foodie.png"]
   }
 };
